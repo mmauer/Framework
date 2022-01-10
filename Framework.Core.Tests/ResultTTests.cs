@@ -2,20 +2,22 @@ using NUnit.Framework;
 
 namespace Framework.Core.Tests
 {
-    public class ResultTests
+    public class ResultTTests
     {
         [Test]
         public void CreateSuccessResult_ReturnsSuccess()
         {
-            var result = Result.Success();
+            var result = Result<int>.Success(1);
 
             Assert.True(result.IsSuccess);
+
+            Assert.AreEqual(result.Value, 1);
         }
 
         [Test]
         public void CreateSuccessWithMessageResult_ReturnsSuccess()
         {
-            var result = Result.Success("Success");
+            var result = Result<int>.Success(1, "Success");
 
             Assert.True(result.IsSuccess);
 
@@ -25,7 +27,7 @@ namespace Framework.Core.Tests
         [Test]
         public void InitializeResult_AddMessage_ReturnsSuccess()
         {
-            var result = Result.Success();
+            var result = Result<int>.Success(1);
 
             result.AddMessage("SuccessMessage");
 
@@ -37,7 +39,7 @@ namespace Framework.Core.Tests
         [Test]
         public void InitializeResult_AddError_ReturnsNotSuccess()
         {
-            var result = Result.Success();
+            var result = Result<int>.Success();
 
             result.AddError("ErrorKey", "ErrorValue");
 
@@ -46,11 +48,10 @@ namespace Framework.Core.Tests
             Assert.AreEqual(result.Errors.Count, 1);
         }
 
-
         [Test]
         public void CreateErrorResult_ReturnsNotSuccess()
         {
-            var result = Result.Error(new ErrorMessage("InvalidRequest", "The request was invalid"));
+            var result = Result<string>.Error(new ErrorMessage("InvalidRequest", "The request was invalid"));
 
             Assert.False(result.IsSuccess);
 
