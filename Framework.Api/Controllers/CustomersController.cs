@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Framework.Core;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,11 @@ namespace Framework.Api.Controllers
         [HttpGet, Route("")]
         public async Task<ActionResult> Customers([FromQuery] int type)
         {
-            return Ok(type);
+            var res = Result<int>.Success(type, "Completed!");
+
+            res.AddMessage("What");
+
+            return Ok(res);
         }
     }
 }
