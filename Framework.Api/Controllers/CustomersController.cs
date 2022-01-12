@@ -1,9 +1,5 @@
 ﻿using Framework.Core;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Framework.Api.Controllers
@@ -12,16 +8,14 @@ namespace Framework.Api.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-
-        // Doing the rule service, rule group thing
         [HttpGet, Route("")]
-        public async Task<ActionResult> Customers([FromQuery] int type)
+        public async Task<ActionResult> Customers([FromQuery] int number)
         {
-            var res = Result<int>.Success(type, "Completed!");
+            var result = Result<int>.Success(number, "Success!");
 
-            res.AddMessage("What");
+            result.AddMessage("Some additional messaging");
 
-            return Ok(res);
+            return Ok(result);
         }
     }
 }
