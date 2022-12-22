@@ -3,28 +3,28 @@ using System;
 
 namespace Framework.Core.Tests
 {
-    public class ErrorMessageTests
+    public class ErrorMessageShould
     {
         [Test]
-        public void ValidKeyAndValue_SuccessfullyCreatesErrorMessage()
+        public void SuccessfullyCreateErrorMessage()
         {
             Assert.DoesNotThrow(() => new ErrorMessage("key", "value"));
         }
 
         [Test]
-        public void InvalidValueParameter_ThrowsArgumentNullException()
+        public void ThrowArgumentNullExceptionDueToInvalidValue()
         {
             Assert.Throws<ArgumentNullException>(() => new ErrorMessage("key", (string)null));
         }
 
         [Test]
-        public void InvalidKeyParameter_ThrowsArgumentNullException()
+        public void ThrowArgumentNullExceptionDueToInvalidKey()
         {
             Assert.Throws<ArgumentNullException>(() => new ErrorMessage(null, new Exception()));
         }
 
         [Test]
-        public void WhenInstantiatingWithKeyAndException_ValueContainsExpectedMessage()
+        public void ContainExpectedValueMessage()
         {
             var message = new ErrorMessage("key", new Exception());
 
@@ -32,7 +32,7 @@ namespace Framework.Core.Tests
         }
 
         [Test]
-        public void InvalidExceptionParameter_ThrowsArgumentNullException()
+        public void ThrowArgumentNullExceptionDueToNullExceptionParameter()
         {
             Assert.Throws<ArgumentNullException>(() => new ErrorMessage("key", (Exception)null));
         }

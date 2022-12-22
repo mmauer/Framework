@@ -2,10 +2,10 @@ using NUnit.Framework;
 
 namespace Framework.Core.Tests
 {
-    public class ResultTTests
+    public class ResultTShould
     {
         [Test]
-        public void CreateSuccessResult_ReturnsSuccess()
+        public void CreateSuccessResult()
         {
             var result = Result<int>.Success(1);
 
@@ -15,7 +15,7 @@ namespace Framework.Core.Tests
         }
 
         [Test]
-        public void CreateSuccessWithMessageResult_ReturnsSuccess()
+        public void CreateSuccessWithMessageResult()
         {
             var result = Result<int>.Success(1, "Success");
 
@@ -25,7 +25,7 @@ namespace Framework.Core.Tests
         }
 
         [Test]
-        public void InitializeResult_AddMessage_ReturnsSuccess()
+        public void RemainSuccessAfterAddingMessage()
         {
             var result = Result<int>.Success(1);
 
@@ -37,7 +37,7 @@ namespace Framework.Core.Tests
         }
 
         [Test]
-        public void InitializeResult_AddError_ReturnsNotSuccess()
+        public void NotBeASuccess()
         {
             var result = Result<int>.Success();
 
@@ -49,7 +49,7 @@ namespace Framework.Core.Tests
         }
 
         [Test]
-        public void CreateErrorResult_ReturnsNotSuccess()
+        public void CreateErrorResult()
         {
             var result = Result<string>.Error(new ErrorMessage("InvalidRequest", "The request was invalid"));
 
